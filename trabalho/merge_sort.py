@@ -4,7 +4,10 @@ import multiprocessing
 import matplotlib.pyplot as plt
 import csv
 
-# Função Merge Sort Sequencial
+
+
+
+# MERGE SORT SEQUENCIAL
 def merge_sort(arr):
     if len(arr) > 1:
         mid = len(arr) // 2
@@ -17,7 +20,10 @@ def merge_sort(arr):
         return merge(left_half, right_half)
     return arr
 
-# Função Merge Sort Paralelo
+
+
+
+# MERGE SORT PARALELO
 def parallel_merge_sort(arr):
     if len(arr) <= 1:
         return arr
@@ -31,7 +37,10 @@ def parallel_merge_sort(arr):
     
     return merge(left_sorted, right_sorted)
 
-# Função para mesclar duas listas ordenadas
+
+
+
+# MESCLA DUAS LISTAS ORDENADAS
 def merge(left, right):
     result = []
     i = j = 0
@@ -48,18 +57,27 @@ def merge(left, right):
     result.extend(right[j:])
     return result
 
-# Função para ler números de um arquivo
+
+
+
+# LE OS NUMEROS DO ARQUIVO
 def read_numbers_from_file(file_path):
     with open(file_path, 'r') as file:
         return [int(line.strip()) for line in file if line.strip().isdigit()]
 
-# Função para escrever números ordenados em um arquivo
+
+
+
+# ESCREVE OS NUMEROS DO ARQUIVO
 def write_numbers_to_file(file_path, numbers):
     with open(file_path, 'w') as file:
         for number in numbers:
             file.write(f"{number}\n")
 
-# Função para medir tempos de execução de um método de ordenação
+
+
+
+# MEDIR TEMPO DE EXECUÇÃO
 def benchmark_sorting(sorting_function, numbers, iterations=10):
     times = []
     for _ in range(iterations):
@@ -70,14 +88,20 @@ def benchmark_sorting(sorting_function, numbers, iterations=10):
         times.append((end_time - start_time) * 1000)  # Convertendo para milissegundos
     return times
 
-# Função para salvar os tempos em CSV
+
+
+
+# SALVAR EM PDF
 def save_times_to_csv(file_name, seq_times, par_times):
     with open(file_name, 'a', newline='') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(["Sequencial"] + seq_times)
         writer.writerow(["Paralelo"] + par_times)
 
-# Função para gerar o gráfico comparativo
+
+
+
+# GERAR GRAFICO COMPARATIVO
 def plot_results(seq_times_dict, par_times_dict, title, save_path):
     plt.figure(figsize=(12, 6))
 
@@ -104,6 +128,9 @@ def plot_results(seq_times_dict, par_times_dict, title, save_path):
     plt.savefig(save_path, bbox_inches='tight')
     print(f"Gráfico salvo em: {save_path}")
     plt.show()
+
+
+
 
 if __name__ == "__main__":
     # Diretórios contendo os arquivos
@@ -164,3 +191,4 @@ if __name__ == "__main__":
     plot_results(seq_times_dict, par_times_dict, "Comparação de Tempo - Merge Sort Sequencial vs Paralelo", output_graph_path)
 
     print("Processamento de todos os arquivos concluído!")
+    
